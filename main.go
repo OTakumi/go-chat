@@ -20,7 +20,8 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	t.once.Do(func() {
 		t.templ = template.Must(template.ParseFiles(filepath.Join("templates", t.filename)))
 	})
-	t.templ.Execute(w, nil)
+
+	t.templ.Execute(w, r)
 }
 
 func main() {
@@ -35,8 +36,8 @@ func main() {
 	go r.run()
 
 	// Start the web server
-	log.Println("Starting the web server on", *addr)
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	log.Println("Starting the web server on this port: ", *addr)
+	if err := http.ListenAndServe(*addr, nil); err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
 }
