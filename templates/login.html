@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>ログイン</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header py-4">
+        <h1 class="text-4xl">ログイン</h1>
+      </div>
+      <div class="panel panel-danger">
+        <div class="panel-heading py-2">
+          <h3 class="panel-title text-xl">チャットを行うにはサインインが必要です</h3>
+        </div>
+        <div class="panel-body">
+          <p>サインインに使用するサービスを選んでください</p>
+          <ul class="w-full max-w-xs space-y-1">
+            <li>
+              <a href="/auth/login/github" class="block rounded-md py-2 px-4 font-semibold text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                Github
+              </a>
+            </li>
+            <li>
+              <a href="/auth/login/github" class="block rounded-md py-2 px-4 font-semibold text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors">
+                Google
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
