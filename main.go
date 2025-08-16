@@ -2,13 +2,14 @@ package main
 
 import (
 	"flag"
-	"github.com/OTakumi/chat/trace"
 	"log"
 	"net/http"
 	"os"
 	"path/filepath"
 	"sync"
 	"text/template"
+
+	"github.com/OTakumi/chat/trace"
 )
 
 type templateHandler struct {
@@ -27,12 +28,13 @@ func (t *templateHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var addr = flag.String("addr", ":8080", "The address of the application.")
+	addr := flag.String("addr", ":8080", "The address of the application.")
 	flag.Parse()
 
 	r := newRoom()
 	r.tracer = trace.New(os.Stdout)
-	http.Handle("/", &templateHandler{filename: "chat.html"})
+	http.Handle("/chat", MustAuth(&templateHandler{filename: "chat.html"}))
+	http.Handle("/login", &templateHandler{filename: "login.html"})
 	http.Handle("/room", r)
 
 	// Start the room
